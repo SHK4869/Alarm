@@ -88,8 +88,9 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra("Humaira","No");
                 intent.setAction(Long.toString(System.currentTimeMillis()));
                 sendBroadcast(intent);
-                //pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 34, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+                pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 34, intent, PendingIntent.FLAG_UPDATE_CURRENT);
                 alarmManager.cancel(pendingIntent); //ERROR, cancel() called on null pending intent
+                Log.e("Humaira: ", "after alarm manager is stopped");
 
             }
         });

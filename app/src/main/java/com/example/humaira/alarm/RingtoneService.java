@@ -24,8 +24,9 @@ public class RingtoneService extends Service{
 
 
         Log.e("Humaira: ", "service started");
-        tone = MediaPlayer.create(this, R.raw.ring);
+
         if(intent.getStringExtra("Humaira").equals("Yes")){
+            tone = MediaPlayer.create(this, R.raw.ring);
             tone.start();
             tone.setLooping(true);
             Log.e("Humaira: ", "playing");
@@ -33,16 +34,16 @@ public class RingtoneService extends Service{
         else {
             //tone.stop();
             //DOESN'T WORK, tone object is lost too after the app is destroyed it seems....
-            if(tone.isPlaying()) {
-                tone.reset();
-                tone.stop();
-                tone.release();
-                Log.e("Humaira: ", "stopped");
-            }
+                if(tone!=null){
+                    tone.stop();
+                    tone.reset();
+                    Log.e("Humaira: ", "stopped");
+                }
+
 
 
         }
-        return Service.START_STICKY;
+        return Service.START_NOT_STICKY;
     }
 
     public void onDestroy() {
