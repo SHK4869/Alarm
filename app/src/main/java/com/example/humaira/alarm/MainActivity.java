@@ -38,8 +38,8 @@ public class MainActivity extends AppCompatActivity {
 
         //SharedPreferences x = getSharedPreferences("pref", Context.MODE_PRIVATE);
         //pendingIntent = x.get
-        if(savedInstanceState != null)
-            pendingIntent = (PendingIntent) savedInstanceState.get("asd");
+        //if(savedInstanceState != null)
+          //  pendingIntent = (PendingIntent) savedInstanceState.get("asd");
 
         //initialize the UI
         setUI();
@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
                 //Log.e("Humaira: ", String.valueOf(calendar.getTimeInMillis()));
 
                 intent.putExtra("Humaira","Yes");
-                intent.setAction(Long.toString(System.currentTimeMillis()));
+                //intent.setAction(Long.toString(System.currentTimeMillis()));
                 pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 34, intent, PendingIntent.FLAG_UPDATE_CURRENT);
                 Log.e("Humaira: ", "after pending intent is intialized");
                 //set the alarm manager
@@ -86,7 +86,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 display.setText("Alarm cancelled");
                 intent.putExtra("Humaira","No");
-                intent.setAction(Long.toString(System.currentTimeMillis()));
+                //following line was creating issues dunno why
+                //intent.setAction(Long.toString(System.currentTimeMillis()));
                 sendBroadcast(intent);
                 pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 34, intent, PendingIntent.FLAG_UPDATE_CURRENT);
                 alarmManager.cancel(pendingIntent); //ERROR, cancel() called on null pending intent
@@ -99,13 +100,13 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-
+/*
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putParcelable("asd",pendingIntent);
     }
-
+*/
     private void setUI() {
         timePicker = findViewById(R.id.time);
         alarmOFF   = findViewById(R.id.off);
